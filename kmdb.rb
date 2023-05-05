@@ -251,12 +251,17 @@ puts ""
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
 
-for movie in Movie
-    mname = Movie["title"]
-    yr = Movie["year_released"]
-    rate = Movie["rating"]
-    stu = Studio["names"]
+movies = Movie.all
 
+#studio_match = Studio.find_by({})
+
+for movie in movies
+    mname = movie["title"]
+    yr = movie["year_released"]
+    rate = movie["rating"]
+    stu = Studio.find_by({"id" => movie["studio_id"]})["name"]
+    puts "#{mname} #{yr} #{rate} #{stu}"
+end
 
 # Prints a header for the cast output
 puts ""
@@ -266,3 +271,5 @@ puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
+
+
